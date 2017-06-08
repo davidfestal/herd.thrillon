@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Hello from Ceylon!</title>
+</head>
+<body>
+    <script src="//requirejs.org/docs/release/2.1.22/minified/require.js"></script>
+    <script src="node_modules/mithril/mithril.min.js"></script>
+    <script type="text/javascript">
+    require.config({
+        baseUrl : 'modules'
+    });
+    require(
+            [ 'herd/thrillon/1.0.0/herd.thrillon-1.0.0' ],
+            function(app) {
+                app.run();
+            }
+    );
+    </script>
+</body>
+</html>

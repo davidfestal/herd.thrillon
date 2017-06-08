@@ -1,0 +1,6 @@
+/.exploded/
+/modules/
+/classes/
+/node_modules/
+/.ceylon/bootstrap/ceylon-bootstrap.jar
+/.ceylon/config~
