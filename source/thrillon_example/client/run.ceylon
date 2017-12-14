@@ -1,181 +1,100 @@
-import ceylon.collection {
-    ArrayList,
-    MutableList
-}
 import ceylon.html {
-    H1,
-    Button,
-    Main,
-    Label,
-    Input,
-    InputType,
-    Ul,
-    Li,
-    Div,
-    H2,
-    H3,
-    Pre
+    Raw
 }
-import ceylon.time {
-    now,
-    Time
+import ceylon.interop.browser {
+    newXMLHttpRequest
 }
+import ceylon.interop.browser.dom {
+    document
+}
+
 import herd.thrillon {
-    MithrilTemplate,
-    BoundValue,
-    TemplateRoot
+    Template,
+    Component,
+    JS,
+    router
 }
-
-
-variable Integer count = 0;
-MutableList<[String, String]> persons = ArrayList<[String, String]> {};
-
-BoundValue<Time> time = BoundValue<Time>(null) ;
-
-class MyTemplate() extends MithrilTemplate() {
-    build() => Main {
-        H1 {
-            clazz = "title";
-            "My First Application"
-        },
-        H2 {
-            "Button test"
-        },
-        H3 {
-            "Simple Ceylon value (count) is incremented on button click is directly updated in the HTML string template."
-        },
-        Pre {
-            style = "display: block";
-
-            """
-               Button {
-                 attributes = [ 
-                   evt.click((dynamic event) { count ++; })
-                 ];
-                 "``count`` clicks"
-               }
-               """
-        },
-        Button {
-            attributes = [ 
-                evt.click((dynamic event) { count ++; })
-            ];
-            
-            "``count`` clicks"
-        },
-        H2 {
-            "Label test"
-        },
-        H3 {
-            "Bounded value (time) is update by a timeout and the label is updated automatically."
-        },
-        Pre {
-            style = "display: block";
-
-            """
-               BoundValue<Time> time = BoundValue<Time>(null) ;
-
-               ...
-               
-               dynamic {
-                 window.setInterval(() {
-                   time.set(now().time());
-                 }, 1000);
-               }
-               
-               ...
-               
-               Label {
-                 style = "color:red;";
-                 "Time is : ``time.get() else ""``"
-               }
-               """
-        },
-        Label {
-            style = "color:red;";
-            "Time is : ``time.get() else ""``"
-        },
-        H2 {
-            "List test"
-        },
-        H3 {
-            "List automatically updated through a Ceylon comprehension."
-        },
-        Pre {
-            style = "display: block";
-
-            """
-               MutableList<[String, String]> persons = ArrayList<[String, String]> {};
-
-               ...
-               
-               Div {
-                 Label{ "Name", Input { id = "name"; type = InputType.text; }},
-                 Label{ "Address", Input { id = "address"; type = InputType.text; }},
-                 Button{
-                   attributes = [
-                     evt.click(() {
-                       String name;
-                       String address;
-                       dynamic {
-                         name = document.getElementById("name").\ivalue;
-                         address = document.getElementById("address").\ivalue;
-                       }
-                       persons.add([name, address]);
-                     })
-                   ];
-                   "Add a user"
-                 }
-               },
-               Ul {
-                 for(person in persons) Li {
-                   "``person[0]`` -> ``person[1]``"
-                 }
-               }
-               """
-        },
-        Div {
-            Label{ "Name", Input { id = "name"; type = InputType.text; }},
-            Label{ "Address", Input { id = "address"; type = InputType.text; }},
-            Button{ attributes = [
-                evt.click(() {
-                    String name;
-                    String address;
-                    dynamic {
-                        name = document.getElementById("name").\ivalue;
-                        address = document.getElementById("address").\ivalue;
-                    }
-                    persons.add([name, address]);
-                })
-                ];
-                "Add a user"
-            }
-        },
-        Ul {
-             for(person in persons) Li {
-                "``person[0]`` -> ``person[1]``"
-             }
-        }
-    };
-    
-}
-
 
 "Run the module `herd.thrillon`."
-shared void run() {
-  TemplateRoot? root;
+shared void mountApplication() {
+  assert (exists root = document.body);
+
+  value demos = {
+      DemoDescription(
+          "button",
+          "Automatic DOM update on events",
+          "Simple Ceylon value (count) is incremented on button click is directly updated in the HTML string template.",
+          buttonDemo),
+      DemoDescription(
+        "watchedValue",
+        "Watched value",
+        "Current time is updated by a Javascript timeout, and the displayed text is updated automatically.",
+        watchedValueDemo),
+      DemoDescription(
+          "list",
+          "Bidirectional input bindings",
+          "List automatically updated through a Ceylon comprehension.",
+          listDemo),
+      DemoDescription(
+          "attachDom",
+          "Dom access",
+          "Access to the underlying Dom element associated to a Html node.",
+          attachDomDemo),
+      DemoDescription(
+          "router",
+          "Routing",
+          "Routing example.",
+          routerDemo,
+          {"router","router/:count"}),
+      DemoDescription(
+          "external",
+          "External Mithril component reuse",
+          "Embed the 'mithril-slider' external component.",
+          externalDemo)
+  };
+
+  String markdown;
   dynamic {
-      root = document.body;
+      markdown = marked(
+          `module herd.thrillon`.annotations<DocAnnotation>().map((annot) => annot.description).first else ""); 
   }
 
-  assert (exists root);
-  
-  dynamic {
-      window.setInterval(() {
-          time.set(now().time());
-      }, 1000);
+  object homePage satisfies Template {
+      build(JS attrs) => layout(demos)(Raw(markdown));
   }
 
+  function getSourceCode(String example) {
+      if(exists url = `module`.resourceByPath("source/`` example ``.ceylon")?.uri) {
+          dynamic { console.log(url); }
+          value req = newXMLHttpRequest();
+          req.open("GET", url, false);
+          req.send();
+          dynamic { console.log(req.statusText); }
+          return req.responseText;
+      } else {
+          return "";
+      }
+  }
   
-  MyTemplate().mount(root);
+  function buildTemplate({DemoDescription*} demos, DemoDescription demo) {
+      demo.demo.initialize();
+      return {
+          for (route in demo.routes)
+          "/`` route ``" -> object satisfies Template {
+              value sourceCode = getSourceCode(demo.example);
+              build(JS attrs) => compose(layout(demos), demoContent)(
+                  demo.title,
+                  demo.description,
+                  sourceCode,
+                  demo.demo.node(attrs));
+          }
+      };
+  }
+
+  router.init(root, "/", {
+    "/" -> homePage,
+    for (demo in demos)
+    for (routedTemplate in buildTemplate(demos,demo))
+    routedTemplate
+  });
 }

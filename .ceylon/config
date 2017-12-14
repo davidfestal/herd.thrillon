@@ -5,3 +5,14 @@ resource=resource
 
 [defaults]
 encoding=UTF-8
+offline=false
+flatclasspath=false
+autoexportmavendependencies=false
+fullyexportmavendependencies=false
+
+[runtool.jvm]
+module=thrillon_example.server
+
+[repositories]
+lookup=./modules
+lookup=../thrillon/modules
