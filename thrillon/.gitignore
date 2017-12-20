@@ -1,0 +1,7 @@
+/.exploded/
+/modules/
+/classes/
+/node_modules/
+/.ceylon/config~
+/.ceylon/ide-config~
+/.idea/
