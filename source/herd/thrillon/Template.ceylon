@@ -5,8 +5,74 @@ import herd.thrillon.internal {
 	...
 }
 
+"""
+   This is the main interface that allows integrating [[ceylon.html|module ceylon.html]]
+   and Mithril.
+
+   This interface allows defining a Mithril [[Component]] based on a Html tree returned as
+   a [[Node]] by the [[build|build]] formal method.
+
+   To create a new Mithril component, simply implement the [[Template.build|Template.build]] method
+   to return a [[ceylon.html|module ceylon.html]] [[Node]] element.
+
+   This `ceylon.html`-based Mithril component can then be attached to any Dom element
+   in the DOM tree with the [[mount|mount]] function.
+
+   #### Example
+
+   ```
+        shared void run() {
+            assert (exists root = document.body);
+            mount {
+                parent = root;
+
+                object component satisfies Template {
+                    variable value count = 0;
+                    build() =>
+                        Main {
+                            Div {
+                                H1 {
+                                    "Thrillon: Mix Mithril and Ceylon Html DSL !"
+                                },
+                                Button {
+                                    attributes = [
+                                        event.click((evt) {
+                                            count ++;
+                                        })
+                                    ];
+
+                                    "``count`` clicks"
+                                }
+                            }
+                        };
+                }
+            };
+        }
+      ```
+
+
+   """
 shared interface Template satisfies Component {
-    shared formal Node build(JS attrs);
+
+    """
+       This formal methd should be overriden in satisfying classes to
+       provide the Html [[Node]] tree that will be used
+       by the [[view|view]] method to build the expected
+       [[VNode]] on Mithril redraws.
+       """
+    shared formal Node build(
+        """Attributes passed to the component by Mithril during redraw.
+           This corresponds to the `vnode.args` value received by the
+           [[view|view]] method. For more details see
+           [the Mithril documentation](https://mithril.js.org/components.html#passing-data-to-components)
+
+           However, to facilitate the use of these Javascript raw data
+           in Ceylon, they are provided as a [[JS]] object.
+           This allows using the [[JsObject]] class to easily access
+           its contents in a typesafe and secure way.
+           """
+        JS attrs
+    );
 
     shared actual VNode view(VNode node) {
         JS attrs;

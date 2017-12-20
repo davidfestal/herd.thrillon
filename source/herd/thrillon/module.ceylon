@@ -1,3 +1,7 @@
+import ceylon.html {
+    Node
+}
+
 """
    
    The `herd.thrillon` module contains a Mithril renderer for the
@@ -23,12 +27,12 @@
    1. [Watched values](#watched-values)
    1. [Bi-directional bound inputs](#bound-inputs)
    1. [Routing](#routing)
+   1. [Javascript utilies](#javascript-utilities)
    1. [Packaging](#packaging)
    1. [Dom access](#dom-access)
    1. [External component reuse](#component-wrappers)
    1. [Lifecycle handlers](#lifecycle-handlers)
-   1. [Javascript utilies](#javascript-utilities)
-   
+
    ------------------------------------------------------------------
    
    #### <a name="what"></a> WHAT DOES IT LOOK LIKE?
@@ -42,7 +46,7 @@
             mount {
                 parent = root;
                 
-                object component satisfies MithrilTemplate {
+                object component satisfies Template {
                     variable value count = 0;
                     build() =>
                         Main {
@@ -84,11 +88,11 @@
    
    - the [[Template]] interface.
    
-   To create a new Mithril component, simply implement the `MithrilTemplate.build()` method
-   to return a `ceylon.html` `Node` element.
+   To create a new Mithril component, simply implement the [[Template.build|Template.build]] method
+   to return a [[ceylon.html|module ceylon.html]] [[Node]] element.
    
-   This element can then be attached to any Dom element in the DOM tree with the
-   `mount()` function.
+   This `ceylon.html`-based Mithril component can then be attached to any Dom element
+   in the DOM tree with the [[mount|mount]] function.
    
 
    ------------------------------------------------------------------
