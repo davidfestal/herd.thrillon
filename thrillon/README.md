@@ -1,6 +1,6 @@
 # herd.thrillon
 
-## Ceylon - Mithril integration to leverage the `ceylon.html` module on the client-side
+## A Ceylon - Mithril integration to leverage the `ceylon.html` module on the client-side
 
 The `herd.thrillon` module contains a Mithril renderer for the standard HTML module of the Ceylon SDK: [`ceylon.html`](https://modules.ceylon-lang.org/repo/1/ceylon/html/1.3.3/module-doc/api/index.html).
 
@@ -129,43 +129,43 @@ More information is given on the [[documentation|WatchedValue]].
 
 ------------------------------------------------------------------
 
-#### 2-WAY BOUND INPUTS
+#### BI-DIRECTIONAL BOUND INPUTS
 
 
 
 ------------------------------------------------------------------
 
-#### <a name="routing"></a> ROUTING
+#### ROUTING
 
 
 
 ------------------------------------------------------------------
 
-#### <a name="javascript-utilities"></a> JAVASCRIPT UTILITIES
+#### JAVASCRIPT UTILITIES
 
 
 
 ------------------------------------------------------------------
 
-#### <a name="packaging"></a> PACKAGING
+#### PACKAGING
 
 
 
 ------------------------------------------------------------------
 
-#### <a name="dom-access"></a> DOM ACCESS
+#### DOM ACCESS
 
 
 
 ------------------------------------------------------------------
 
-#### <a name="component-wrappers"></a> EXTERNAL COMPONENT REUSE
+#### EXTERNAL COMPONENT REUSE
 
 
 
 ------------------------------------------------------------------
 
-#### <a name="lifecycle-handlers"></a> LIFECYCLE HANDLERS
+#### LIFECYCLE HANDLERS
 
 
 ------------------------------------------------------------------
