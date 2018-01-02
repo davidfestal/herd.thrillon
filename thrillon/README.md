@@ -21,9 +21,9 @@ directly while defining your HTML.
 
 1. [What does it look like?](#what-does-it-look-like)
 1. [Basics](#basics)
-1. [Event handlers](#events)
+1. [Event handlers](#event-handlers)
 1. [Watched values](#watched-values)
-1. [Bi-directional bound inputs](#bound-inputs)
+1. [Bi-directional bound inputs](#bi-directional-bound-inputs)
 1. [Routing](#routing)
 1. [Javascript utilies](#javascript-utilities)
 1. [Packaging](#packaging)
@@ -38,7 +38,7 @@ directly while defining your HTML.
 A quick preview shows code example, which mounts a Ceylon HTML Mithril template to
 the DOM document root:
 
-```
+```ceylon
     shared void run() {
         assert (exists root = document.body);
         mount {
@@ -95,13 +95,13 @@ in the DOM tree with the [[mount|mount]] function.
 
 ------------------------------------------------------------------
 
-#### <a name="event"></a> EVENT HANDLERS
+#### EVENT HANDLERS
 
 The [[event]] object allows adding Ceylon functions as event handlers
 in the [[attributes|ceylon.html::Node.attributes]] of a
 [[ceylon.html|module ceylon.html]] [[node|ceylon.html::Node]].
 
-```
+```ceylon
     Button {
         attributes = [ 
             event.click((evt) { 
@@ -119,7 +119,7 @@ More information is given on the [[documentation|event]].
 
 ------------------------------------------------------------------
 
-#### <a name="watched-values"></a> WATCHED VALUES
+#### WATCHED VALUES
 
 The [[WatchedValue]] class provides a way to automatically
 trigger an incremental redraw of the HTML DOM tree each time
@@ -129,7 +129,7 @@ More information is given on the [[documentation|WatchedValue]].
 
 ------------------------------------------------------------------
 
-#### <a name="bound-inputs"></a> 2-WAY BOUND INPUTS
+#### 2-WAY BOUND INPUTS
 
 
 
