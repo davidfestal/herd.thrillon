@@ -28,7 +28,7 @@ directly while defining your HTML.
 1. [Javascript utilies](#javascript-utilities)
 1. [Packaging](#packaging)
 1. [Dom access](#dom-access)
-1. [External component reuse](#component-wrappers)
+1. [External component reuse](#external-component-reuse)
 1. [Lifecycle handlers](#lifecycle-handlers)
 
 ------------------------------------------------------------------
