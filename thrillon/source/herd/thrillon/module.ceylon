@@ -21,8 +21,8 @@ import ceylon.html {
    
    #### CONTENT
    
-   1. [What does it look like?](#what)
-   1. [Basic usage](#basic)
+   1. [What does it look like?](#what-does-it-look-like)
+   1. [Basics](#basics)
    1. [Event handlers](#events)
    1. [Watched values](#watched-values)
    1. [Bi-directional bound inputs](#bound-inputs)
@@ -35,7 +35,7 @@ import ceylon.html {
 
    ------------------------------------------------------------------
    
-   #### <a name="what"></a> WHAT DOES IT LOOK LIKE?
+   #### WHAT DOES IT LOOK LIKE?
    
    A quick preview shows code example, which mounts a Ceylon HTML Mithril template to
    the DOM document root:
@@ -76,7 +76,7 @@ import ceylon.html {
    
    ------------------------------------------------------------------
    
-   #### <a name="basic"></a> BASIC USAGE
+   #### BASICS
    
    The module defines bindings for some of the main Mithril API calls and structures:
    - the [[Component]] interface,
@@ -121,29 +121,57 @@ import ceylon.html {
    
    ------------------------------------------------------------------
    
-   #### <a name="bound-values"></a> BOUND VALUES
-   
+   #### <a name="watched-values"></a> WATCHED VALUES
+
    The [[WatchedValue]] class provides a way to automatically
-   trigger a redraw of the HTML DOM tree by Mithril each time
+   trigger an incremental redraw of the HTML DOM tree each time
    a value is changed.
 
    More information is given on the [[documentation|WatchedValue]].
    
    ------------------------------------------------------------------
-   
+
    #### <a name="bound-inputs"></a> 2-WAY BOUND INPUTS
-   
-   
-   
+
+
+
    ------------------------------------------------------------------
-   
+
+   #### <a name="routing"></a> ROUTING
+
+
+
+   ------------------------------------------------------------------
+
+   #### <a name="javascript-utilities"></a> JAVASCRIPT UTILITIES
+
+
+
+   ------------------------------------------------------------------
+
+   #### <a name="packaging"></a> PACKAGING
+
+
+
+   ------------------------------------------------------------------
+
+   #### <a name="dom-access"></a> DOM ACCESS
+
+
+
+   ------------------------------------------------------------------
+
    #### <a name="component-wrappers"></a> EXTERNAL COMPONENT REUSE
+
    
    
    ------------------------------------------------------------------
    
+   #### <a name="lifecycle-handlers"></a> LIFECYCLE HANDLERS
    
-      
+   
+   ------------------------------------------------------------------
+   
    """
 native("js")
 module herd.thrillon "1.0.1" {
