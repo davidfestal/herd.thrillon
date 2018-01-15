@@ -179,7 +179,7 @@ class allows pointing directly to an expected value in the Javascript
 object tree structure like this:
 
 ```ceylon
-   value jsPath = JsPath(complexJavascriptObject);
+   value path = JsPath(complexJavascriptObject);
 
    // get a[0].s
    String? sInFirstA = path.get("a").get(0).get("s").str;
