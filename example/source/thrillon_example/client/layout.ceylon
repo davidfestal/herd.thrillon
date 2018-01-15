@@ -92,10 +92,15 @@ Body layout({DemoDescription*} demos)(Content<FlowCategory> contents) => Body {
                             href = "https://github.com/davidfestal/herd.thrillon";
                             attributes = [ "role" -> "button" ];
                             "Go to GitHub ", Raw("&raquo;")
+                        },
+                        " ",
+                        A { clazz = "btn btn-primary btn-lg";
+                            href = "https://modules.ceylon-lang.org/repo/1/herd/thrillon/`` `module`.version ``/module-doc/api/index.html";
+                            attributes = [ "role" -> "button" ];
+                            "Ceylon documentation ", Raw("&raquo;")
                         }
                     }
                 }
-                
             },
             Div { clazz="container";
                 contents
