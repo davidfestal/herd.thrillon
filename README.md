@@ -6,7 +6,7 @@ Thrillon consists in a single a simple Ceylon module:
 [herd.thrillon](https://modules.ceylon-lang.org/repo/1/herd/thrillon/1.0.1/module-doc/api/index.html).
 
 This module module contains a Mithril renderer for the standard HTML module of the Ceylon SDK:
-[`ceylon.html`](https://modules.ceylon-lang.org/repo/1/ceylon/html/1.3.3/module-doc/api/index.html).
+[ceylon.html](https://modules.ceylon-lang.org/repo/1/ceylon/html/1.3.3/module-doc/api/index.html).
 
 This combines the *__statically-typed__*, *__declarative__* and *__functional__* approach of
 `ceylon.html` with the *__simplicity__*, *__power__*, and *__performance__* of
