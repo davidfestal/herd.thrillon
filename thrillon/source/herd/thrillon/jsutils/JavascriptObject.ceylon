@@ -1,6 +1,12 @@
 shared dynamic JS {
 }
 
+shared JS voidJs {
+    dynamic {
+        return dynamic [];
+    }
+}
+
 shared alias JsType => String | Integer | Float | Boolean | JsObject | JsArray;
 
 shared class JsArray(js) 

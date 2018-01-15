@@ -3,7 +3,6 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry exported="true" kind="con" path="com.redhat.ceylon.eclipse.ui.cpcontainer.RUNTIME_CONTAINER/default"/>
 	<classpathentry exported="true" kind="con" path="com.redhat.ceylon.eclipse.ui.cpcontainer.CEYLON_CONTAINER/default"/>
-	<classpathentry combineaccessrules="false" kind="src" path="/thrillon"/>
 	<classpathentry kind="src" path="source"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>

@@ -1,8 +1,5 @@
 import ceylon.html {
-	AttributeEntry,
-    Table,
-    TBody,
-    Tr
+	AttributeEntry
 }
 
 """

@@ -4,6 +4,14 @@ import ceylon.html {
 import herd.thrillon.internal {
 	...
 }
+import herd.thrillon.jsutils {
+    ...
+}
+
+"""
+   Wrapper on a [[JS]] object to be used inside the [[Template.build]] function
+   """
+shared dynamic Args satisfies JS {}
 
 """
    This is the main interface that allows integrating [[ceylon.html|module ceylon.html]]
@@ -71,11 +79,11 @@ shared interface Template satisfies Component {
            This allows using the [[JsObject]] class to easily access
            its contents in a typesafe and secure way.
            """
-        JS attrs
+        Args attrs
     );
 
     shared actual VNode view(VNode node) {
-        JS attrs;
+        Args attrs;
         dynamic {
             if (exists nodeAttrs = node.attrs) {
                 attrs = nodeAttrs;

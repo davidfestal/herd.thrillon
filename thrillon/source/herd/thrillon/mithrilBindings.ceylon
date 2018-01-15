@@ -2,6 +2,7 @@ import ceylon.interop.browser.dom {
     DomElement=Element
 }
 
+import mithril { ... }
 
 "Ceylon binding for a Mithril [Component](https://mithril.js.org/components.html)"
 shared dynamic Component {

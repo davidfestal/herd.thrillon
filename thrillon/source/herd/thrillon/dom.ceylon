@@ -41,6 +41,10 @@ import herd.thrillon.internal {
    """
 shared AttributeEntry attachDom() => domRetrieverAttributeName -> DomAttributeValueProvider();
 
+"""
+   Function that retrieves the current dom node from a Html [[Node]],
+   assuming that it was previously requested with the [[attachDom]] function
+   """
 shared DomNode? dom(Node? node) {
 	value provider = domProvider(node);
 	if (exists provider) {
