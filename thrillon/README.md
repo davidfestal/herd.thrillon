@@ -1,4 +1,4 @@
-# Thrillon
+# Thrillon: Ceylon typesafe client-side web framework
 
 ## A Ceylon - Mithril integration to leverage the `ceylon.html` module on the client-side
 
