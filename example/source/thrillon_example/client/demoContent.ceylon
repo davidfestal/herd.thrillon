@@ -12,8 +12,10 @@ import ceylon.html {
 }
 import herd.thrillon {
     lifecycle,
-    JS
+    Args
 }
+
+import highlightjs { ... }
 
 class DemoDescription(example, title, description, demo, routes = {example}) {
     shared String example;
@@ -25,7 +27,7 @@ class DemoDescription(example, title, description, demo, routes = {example}) {
 
 interface Demo {
     shared default void initialize() => noop();
-    shared formal FlowCategory&Node node(JS attrs);
+    shared formal FlowCategory&Node node(Args attrs);
 }
 
 Content<FlowCategory> demoContent(String title, String description, String sourceCode, Content<FlowCategory> contents) =>  { 

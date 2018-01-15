@@ -1,27 +1,22 @@
 import ceylon.html { ... }
-import herd.thrillon { ... }
-import ceylon.interop.browser.dom { HtmlDomElement=HTMLElement }
+import herd.thrillon { Args, event, router }
+import herd.thrillon.jsutils { JsObject }
 
 object routerDemo satisfies Demo {
-    variable Integer count = 0;
     late variable Button button;
     
-    shared actual FlowCategory&Node node(JS attrs)  {
-        value parsed = Integer.parse(JsPath(JsObject(attrs))["count"]?.str else "0");
-        variable value count = if (is Integer parsed) then parsed else 0;
-        button = Button {
+    node(Args attrs) =>
+        let (parsed = Integer.parse(JsObject(attrs)["count"]?.string else "0"),
+             count = if (is Integer parsed) then parsed else 0) Button {
             attributes = [ 
                 event.click((evt) {
                     dynamic {
                         console.log("route parameters =", router.parameters);
                     }
-                    count ++;
-                    router.redirect("/router/:count", { "count" -> "`` count ``"});
+                    router.redirect("/router/:count", { "count" -> "`` count + 1 ``"});
                 })
             ];
             
             "``count`` clicks"
-        };    
-        return button;
-    }
+        };
 }

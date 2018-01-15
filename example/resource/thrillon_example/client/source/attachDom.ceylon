@@ -1,11 +1,11 @@
 import ceylon.html { ... }
 import herd.thrillon { ... }
-import ceylon.interop.browser.dom { HtmlDomElement=HTMLElement }
+import ceylon.interop.browser.dom { HtmlDomElement = HTMLElement }
 
 object attachDomDemo satisfies Demo {
     late variable Button button;
     
-    shared actual FlowCategory&Node node(JS attrs)  {
+    shared actual FlowCategory&Node node(Args attrs)  {
         button = Button {
             attributes = [ 
                 attachDom(),
@@ -26,7 +26,7 @@ object attachDomDemo satisfies Demo {
             ];
             
             "Change color"
-        };    
+        };
         return button;
     }
 }

@@ -2,7 +2,8 @@ import ceylon.html {
     Raw
 }
 import ceylon.interop.browser {
-    newXMLHttpRequest
+    newXMLHttpRequest,
+    window
 }
 import ceylon.interop.browser.dom {
     document
@@ -10,8 +11,7 @@ import ceylon.interop.browser.dom {
 
 import herd.thrillon {
     Template,
-    Component,
-    JS,
+    Args,
     router
 }
 
@@ -60,17 +60,21 @@ shared void mountApplication() {
   }
 
   object homePage satisfies Template {
-      build(JS attrs) => layout(demos)(Raw(markdown));
+      build(Args attrs) => layout(demos)(Raw(markdown));
   }
 
   function getSourceCode(String example) {
       if(exists url = `module`.resourceByPath("source/`` example ``.ceylon")?.uri) {
-          dynamic { console.log(url); }
-          value req = newXMLHttpRequest();
-          req.open("GET", url, false);
-          req.send();
-          dynamic { console.log(req.statusText); }
-          return req.responseText;
+          if (window.location.string.startsWith("file:")) {
+              return "";
+          } else {
+              dynamic { console.log(url); }
+              value req = newXMLHttpRequest();
+              req.open("GET", url, false);
+              req.send();
+              dynamic { console.log(req.statusText); }
+              return req.responseText;
+          }
       } else {
           return "";
       }
@@ -82,7 +86,7 @@ shared void mountApplication() {
           for (route in demo.routes)
           "/`` route ``" -> object satisfies Template {
               value sourceCode = getSourceCode(demo.example);
-              build(JS attrs) => compose(layout(demos), demoContent)(
+              build(Args attrs) => compose(layout(demos), demoContent)(
                   demo.title,
                   demo.description,
                   sourceCode,

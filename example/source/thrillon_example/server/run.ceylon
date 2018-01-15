@@ -5,7 +5,8 @@ import ceylon.http.server {
     newServer,
     AsynchronousEndpoint,
     startsWith,
-    equals
+    equals,
+    isRoot
 }
 import ceylon.http.server.endpoints {
     RepositoryEndpoint,
@@ -18,19 +19,19 @@ import ceylon.io {
 "Run the module `com.acme.server`."
 shared void run() {
     value modulesEp = RepositoryEndpoint("/modules");
-    
-    value indexHtml = AsynchronousEndpoint(
-        equals("/"), 
-        serveStaticFile("www", (req) => "/index.html".string),
+
+    value index = AsynchronousEndpoint(
+        isRoot(),
+        serveStaticFile(".", (req) => "/index.html"),
         {get}
     );
 
-    value js = AsynchronousEndpoint(
-        startsWith("/js"), 
-        serveStaticFile("js", (req) => req.path.removeInitial("/js")),
+    value rootFiles = AsynchronousEndpoint(
+        equals("/index.html").or( equals("/require.js")),
+        serveStaticFile("."),
         {get}
     );
-    
+
     value resources = AsynchronousEndpoint(
         startsWith("/modules/thrillon_example/client/1.0.1/module-resources"), 
         serveStaticFile("modules/thrillon_example/client/1.0.1/module-resources", (req) => req.path.removeInitial("/modules/thrillon_example/client/1.0.1/module-resources")),
@@ -43,13 +44,13 @@ shared void run() {
         {get}
     );
 
-    value server = newServer { 
-        indexHtml,
-        js,
+    value server = newServer {
+        index,
+        rootFiles,
         resources,
         modulesEp, 
         nodeEp
     };
     
-    server.start(SocketAddress("0.0.0.0", 8081));
+    server.start(SocketAddress("0.0.0.0", 8080));
 }

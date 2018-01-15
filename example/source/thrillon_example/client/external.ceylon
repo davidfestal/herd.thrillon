@@ -1,67 +1,32 @@
-import ceylon.collection {
-    ArrayList
-}
-import ceylon.html {
-    Tr,
-    Button,
-    THead,
-    InputType,
-    Form,
-    TBody,
-    Div,
-    Input,
-    Th,
-    ButtonType,
-    Label,
-    Table,
-    Node
-}
+import ceylon.html { Div, Node }
 import mithril.slider { slider }
-
-import herd.thrillon {
-    Component,
-    event,
-    InputTextValue,
-    WatchedValue,
-    WrappedComponent,
-    JS,
-    Template,
-    JsPath,
-    jsType,
-    JsObject,
-    vnode
-}
+import herd.thrillon { ... }
+import herd.thrillon.jsutils { JS, JsPath, JsObject }
 
 object externalDemo satisfies Demo {
     Component theSlider;
     dynamic {
         theSlider = slider;
     }
-    value persons = ArrayList<[String, String]> {};
-
-    value name = InputTextValue(InputType.text, WatchedValue<String>(null));
-    value address = InputTextValue(InputType.text, WatchedValue<String>(null));
 
     object page satisfies Template {
-        shared actual Node build(JS attrs) =>
-                let(opts = JsPath(JsObject(attrs)))
-                if (exists imageFile = opts.get("data").str,
-                    exists url = `module`.resourceByPath("images/``  imageFile ``")?.uri)
-                then
-                    Div {
-                        style = "height: 480px;
-                                 width: 640px;
-                                 top: 0;
-                                 float: left;
-                                 background-image: url(`` url ``);";
-                    }
-                else
-                    Div {
-                        "No image"
-                    };
+        build(Args attrs) =>
+            let (opts = JsPath(JsObject(attrs)))
+            if (exists imageFile = opts.get("data").str,
+                exists url = `module`.resourceByPath("images/``imageFile``")?.uri)
+            then
+            Div {
+                style = "height: 480px;
+                         width: 640px;
+                         top: 0;
+                         float: left;
+                         background-image: url(``url``);";
+            } else Div {
+                "No image"
+            };
     }
 
-    node(JS attrs) => Div {
+    node(Args attrs) => Div {
         style = "margin: auto;
                  min-height: 480px;
                  width: 640px;";

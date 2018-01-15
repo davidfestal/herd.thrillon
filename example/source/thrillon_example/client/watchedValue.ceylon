@@ -1,6 +1,5 @@
 import ceylon.time { Time, now }
-import herd.thrillon { ExistingWatchedValue,
-    JS }
+import herd.thrillon { Args, ExistingWatchedValue}
 import ceylon.interop.browser { window }
 import ceylon.html { H3 }
 
@@ -13,9 +12,10 @@ object watchedValueDemo satisfies Demo {
         }, 300);
     }
     
-    node(JS attrs) =>  H3 { clazz = "text-center";
-        "Time is : ``
-        let (timeStr = currentTime.get().string) 
-        timeStr.substring(0, timeStr.size - 4)``"
-    };
+    node(Args attrs) =>
+        H3 { clazz = "text-center";
+            "Time is : ``
+            let (timeStr = currentTime.get().string)
+            timeStr.substring(0, timeStr.size - 4)``"
+        };
 }

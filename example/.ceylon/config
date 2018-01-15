@@ -15,4 +15,3 @@ module=thrillon_example.server
 
 [repositories]
 lookup=./modules
-lookup=../thrillon/modules
