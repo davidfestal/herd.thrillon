@@ -9,7 +9,8 @@ This module module contains a Mithril renderer for the standard HTML module of t
 [ceylon.html](https://modules.ceylon-lang.org/repo/1/ceylon/html/1.3.3/module-doc/api/index.html).
 
 This combines the *__statically-typed__*, *__declarative__* and *__functional__* approach of
-`ceylon.html` with the *__simplicity__*, *__power__*, and *__performance__* of
+[ceylon.html](https://modules.ceylon-lang.org/repo/1/ceylon/html/1.3.3/module-doc/api/index.html)
+with the *__simplicity__*, *__power__*, and *__performance__* of
 [Mithril.js](https://mithril.js.org)
 
 With Thrillon, *__declarative, composable and typesafe web development__*.
