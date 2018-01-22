@@ -6,6 +6,7 @@ script:
   - ./thrillon/ceylonb compile-js --cwd=./thrillon
   - ./thrillon/ceylonb copy  --cwd=./thrillon --js --with-dependencies --include-language=true --out="$(pwd)/example/modules" herd.thrillon
   - ./example/ceylonb compile-js --cwd=./example
+  - ./example/ceylonb compile --cwd=./example
   - mkdir build
   - mkdir build/modules
   - ./example/ceylonb copy --cwd=./example --all --with-dependencies --include-language=true --out="$(pwd)/build/modules" thrillon_example.client
