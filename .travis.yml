@@ -1,0 +1,22 @@
+sudo: false
+language: java
+notifications:
+  email: false
+jdk:
+  - oraclejdk7
+script:
+  - ./thrillon/ceylonb compile-js
+  - ./thrillon/ceylonb copy --js --with-dependencies --include-language=true --out="./example/modules"
+  - ./example/ceylonb compile-js
+  - mkdir build
+  - cp -R ./example/index.html .example/require.js ./example/modules/ ./example/node_modules/ ./build/
+env:
+  global:
+    - JAVA_OPTS="-Xmx3g"
+deploy:
+  provider: pages
+  skip_cleanup: true
+  github_token: $github_token
+  local_dir: build
+  on:
+    branch: master
