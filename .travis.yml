@@ -8,7 +8,7 @@ script:
   - ./example/ceylonb compile-js --cwd=./example
   - mkdir build
   - mkdir build/modules
-  - ./example/ceylonb copy --cwd=./example --js --with-dependencies --include-language=true --out="$(pwd)/build/modules" thrillon_example.client
+  - ./example/ceylonb copy --cwd=./example --all --with-dependencies --include-language=true --out="$(pwd)/build/modules" thrillon_example.client
   - cp -R ./example/index.html ./example/require.js ./example/node_modules/ ./build/
 env:
   global:
