@@ -11,6 +11,7 @@ script:
   - cp -R ./example/index.html ./example/require.js ./example/node_modules/ ./build/
   - ls -R ./example/modules/thrillon_example/client/ 
   - cd ./example/ && cp -R modules/thrillon_example/client/*/module-resources/ ./build/ && cd ..
+  - touch .nojekyll 
 env:
   global:
     - JAVA_OPTS="-Xmx3g"
