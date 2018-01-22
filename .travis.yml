@@ -3,16 +3,14 @@ language: java
 notifications:
   email: false
 script:
-  - ./thrillon/ceylonb compile-js --cwd=./thrillon
-  - ./thrillon/ceylonb copy  --cwd=./thrillon --js --with-dependencies --include-language=true --out="$(pwd)/example/modules" herd.thrillon
-  - ./example/ceylonb compile-js --cwd=./example
-  - ./example/ceylonb compile --cwd=./example
+  - cd thrillon && ./ceylonb compile-js && cd ..
+  - cd thrillon && ./ceylonb copy --js --with-dependencies --include-language=true --out="../example/modules" herd.thrillon && cd ..
+  - cd example && ./ceylonb compile-js && cd ..
   - mkdir build
-  - mkdir build/modules
-  - ./example/ceylonb copy --cwd=./example --all --with-dependencies --include-language=true --out="$(pwd)/build/modules" thrillon_example.client
+  - cd example && ./ceylonb copy --js --with-dependencies --include-language=true --out="../build/modules" thrillon_example.client && cd ..
   - cp -R ./example/index.html ./example/require.js ./example/node_modules/ ./build/
   - ls -R ./example/modules/thrillon_example/client/ 
-  - cd ./example/ && cp -R modules/thrillon_example/client/*/module-resources/ ./build/
+  - cd ./example/ && cp -R modules/thrillon_example/client/*/module-resources/ ./build/ && cd ..
 env:
   global:
     - JAVA_OPTS="-Xmx3g"
