@@ -13,7 +13,7 @@ This combines the *__statically-typed__*, *__declarative__* and *__functional__*
 with the *__simplicity__*, *__power__*, and *__performance__* of
 [Mithril.js](https://mithril.js.org)
 
-With Thrillon, *__declarative, composable and typesafe web development__*.
+With Thrillon, enjoy *__declarative, composable and typesafe web development__*.
 
 ## Sources and Documentation
 
