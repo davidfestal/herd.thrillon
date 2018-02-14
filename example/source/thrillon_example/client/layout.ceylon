@@ -16,11 +16,12 @@ import ceylon.html {
     Raw,
     H4,
     Ul,
-    Li
+    Li,
+    Img
 }
 
 import herd.thrillon {
-    router
+    lifecycle, router
 }
 
 Body layout({DemoDescription*} demos)(Content<FlowCategory> contents) => Body {
@@ -91,7 +92,8 @@ Body layout({DemoDescription*} demos)(Content<FlowCategory> contents) => Body {
                         A { clazz = "btn btn-primary btn-lg";
                             href = "https://github.com/davidfestal/herd.thrillon";
                             attributes = [ "role" -> "button" ];
-                            "Go to GitHub ", Raw("&raquo;")
+                            "Go to GitHub ",
+                            Img { width = 32; height = 32; src = "https://cdn.jsdelivr.net/npm/simple-icons@latest/icons/github.svg"; }
                         },
                         " ",
                         A { clazz = "btn btn-primary btn-lg";

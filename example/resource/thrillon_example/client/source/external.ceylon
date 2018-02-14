@@ -1,9 +1,9 @@
 import ceylon.html { Div, Node }
 import mithril.slider { slider }
-import herd.thrillon { ... }
+import herd.thrillon { Template, ... }
 import herd.thrillon.jsutils { JS, JsPath, JsObject }
 
-object externalDemo satisfies Demo {
+object externalDemo satisfies Template {
     Component theSlider;
     dynamic {
         theSlider = slider;
@@ -26,7 +26,7 @@ object externalDemo satisfies Demo {
             };
     }
 
-    node(Args attrs) => Div {
+    build(Args attrs) => Div {
         style = "margin: auto;
                  min-height: 480px;
                  width: 640px;";

@@ -1,11 +1,11 @@
 import ceylon.html { ... }
-import herd.thrillon { ... }
+import herd.thrillon { Template, ... }
 import ceylon.interop.browser.dom { HtmlDomElement = HTMLElement }
 
-object attachDomDemo satisfies Demo {
+object attachDomDemo satisfies Template {
     late variable Button button;
     
-    shared actual FlowCategory&Node node(Args attrs)  {
+    shared actual Node build(Args attrs)  {
         button = Button {
             attributes = [ 
                 attachDom(),

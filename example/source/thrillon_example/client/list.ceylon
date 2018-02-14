@@ -1,14 +1,14 @@
 import ceylon.collection { ArrayList }
 import ceylon.html { ... }
-import herd.thrillon { ... }
+import herd.thrillon { Template, ... }
 
-object listDemo satisfies Demo {
+object listDemo satisfies Template {
     value persons = ArrayList<[String, String]> {};
     
     value name = InputTextValue(InputType.text, WatchedValue<String>(null));
     value address = TextAreaValue(WatchedValue<String>(null));
     
-    node(Args attrs) =>
+    build(Args attrs) =>
 		Div { clazz = "container";
 			Div { clazz = "row";
 				Div { clazz = "col";

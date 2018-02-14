@@ -1,10 +1,10 @@
 import ceylon.html { ... }
-import herd.thrillon { ... }
+import herd.thrillon { Template, ... }
 
-object buttonDemo satisfies Demo {
+object buttonDemo satisfies Template {
     variable Integer count = 0;
 
-    node(Args attrs)  => Button {
+    build(Args attrs)  => Button {
         attributes = [
             event.click((evt) {
                 count ++;

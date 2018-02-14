@@ -12,25 +12,23 @@ import ceylon.html {
 }
 import herd.thrillon {
     lifecycle,
-    Args
+    Template,
+    Args,
+    WrappedComponent
 }
 
 import highlightjs { ... }
 
-class DemoDescription(example, title, description, demo, routes = {example}) {
+class DemoDescription(example, title, description, demo, initialize = noop, routes = {example}) {
     shared String example;
     shared String title;
     shared String description;
-    shared Demo demo;
+    shared Template demo;
+    shared Anything() initialize;
     shared {String+} routes;
 }
 
-interface Demo {
-    shared default void initialize() => noop();
-    shared formal FlowCategory&Node node(Args attrs);
-}
-
-Content<FlowCategory> demoContent(String title, String description, String sourceCode, Content<FlowCategory> contents) =>  { 
+Content<FlowCategory> demoContent(String title, String description, String sourceCode, Template demoTemplate, Args attrs) =>  {
 	H3 { 
 		title
     },
@@ -106,7 +104,7 @@ Content<FlowCategory> demoContent(String title, String description, String sourc
                 ];
                 
                 Div { clazz = "card-body";
-                    contents
+                    WrappedComponent(demoTemplate, () => attrs)
                 }
             }
         }

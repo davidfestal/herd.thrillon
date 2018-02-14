@@ -29,7 +29,8 @@ shared void mountApplication() {
         "watchedValue",
         "Watched value",
         "Current time is updated by a Javascript timeout, and the displayed text is updated automatically.",
-        watchedValueDemo),
+        watchedValueDemo,
+      watchedValueDemo.initialize),
       DemoDescription(
           "list",
           "Bidirectional input bindings",
@@ -45,6 +46,7 @@ shared void mountApplication() {
           "Routing",
           "Routing example.",
           routerDemo,
+          noop,
           {"router","router/:count"}),
       DemoDescription(
           "external",
@@ -81,7 +83,7 @@ shared void mountApplication() {
   }
   
   function buildTemplate({DemoDescription*} demos, DemoDescription demo) {
-      demo.demo.initialize();
+      demo.initialize();
       return {
           for (route in demo.routes)
           "/`` route ``" -> object satisfies Template {
@@ -90,7 +92,8 @@ shared void mountApplication() {
                   demo.title,
                   demo.description,
                   sourceCode,
-                  demo.demo.node(attrs));
+                  demo.demo,
+                  attrs);
           }
       };
   }
