@@ -22,13 +22,21 @@ shared void mountApplication() {
   value demos = {
       DemoDescription(
           "button",
-          "Automatic DOM update on events",
-          "Simple Ceylon value (count) is incremented on button click is directly updated in the HTML string template.",
+          "Event Handlers",
+          "
+           ##### _Automatic DOM update on events_
+           This example shows how a simple Ceylon value (`count`),
+           incremented on button click,
+           is *__directly__* and *__automatically__* updated and rendered
+           in the HTML page DOM.
+           ",
           buttonDemo),
       DemoDescription(
         "watchedValue",
-        "Watched value",
-        "Current time is updated by a Javascript timeout, and the displayed text is updated automatically.",
+        "Watched Values",
+        "This example shows how the displayed DOM text is updated *__automatically__*, when the current time is updated by a Javascript timer.
+
+         Note that *only the text DOM node is updated*, thanks to the Virtual DOM diffing mechanism.",
         watchedValueDemo,
       watchedValueDemo.initialize),
       DemoDescription(
@@ -81,8 +89,17 @@ shared void mountApplication() {
           return "";
       }
   }
-  
-  function buildTemplate({DemoDescription*} demos, DemoDescription demo) {
+
+    function renderMarkdown(String description) {
+        String markdown;
+        dynamic {
+            markdown = marked(description);
+        }
+        return Raw(markdown);
+    }
+
+
+    function buildTemplate({DemoDescription*} demos, DemoDescription demo) {
       demo.initialize();
       return {
           for (route in demo.routes)
@@ -90,7 +107,7 @@ shared void mountApplication() {
               value sourceCode = getSourceCode(demo.example);
               build(Args attrs) => compose(layout(demos), demoContent)(
                   demo.title,
-                  demo.description,
+                  renderMarkdown(demo.description),
                   sourceCode,
                   demo.demo,
                   attrs);

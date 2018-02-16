@@ -8,7 +8,9 @@ import ceylon.html {
     H5,
     A,
     Pre,
-    Node
+    Node,
+    Raw,
+    PhrasingCategory
 }
 import herd.thrillon {
     lifecycle,
@@ -18,6 +20,9 @@ import herd.thrillon {
 }
 
 import highlightjs { ... }
+import ceylon.time.base {
+    march
+}
 
 class DemoDescription(example, title, description, demo, initialize = noop, routes = {example}) {
     shared String example;
@@ -28,8 +33,8 @@ class DemoDescription(example, title, description, demo, initialize = noop, rout
     shared {String+} routes;
 }
 
-Content<FlowCategory> demoContent(String title, String description, String sourceCode, Template demoTemplate, Args attrs) =>  {
-	H3 { 
+Content<FlowCategory> demoContent(String title, Content<PhrasingCategory> description, String sourceCode, Template demoTemplate, Args attrs) => {
+    H3 {
 		title
     },
     P {
