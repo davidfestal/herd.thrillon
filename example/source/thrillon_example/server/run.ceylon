@@ -16,7 +16,6 @@ import ceylon.io {
     SocketAddress
 }
 
-"Run the module `com.acme.server`."
 shared void run() {
     value modulesEp = RepositoryEndpoint("/modules");
 
