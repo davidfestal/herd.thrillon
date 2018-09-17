@@ -41,7 +41,7 @@ Body layout({DemoDescription*} demos)(Content<FlowCategory> contents) => Body {
                     Span { clazz = "navbar-toggler-icon"; }
                 },
                 H5 { clazz = "navbar-text";
-                    Strong { Span { clazz = "text-secondary"; "Thrillon : Thril" }, "ling web development with Cey", Span { clazz = "text-secondary"; "lon" }, " - ", "Demo Application" }
+                    Strong { "Demo Application - " }, "Use the menu to navigate through the examples"
                 },
                 Span { clazz = "navbar-text";
                     A { clazz = "icon";
